@@ -6,8 +6,6 @@ Tech stack
 
 Backend: Java 21 · Spring Boot 3.5 · Spring Security (JWT) · Spring Data JPA · PostgreSQL · Flyway · Spring AI (tool calling) · springdoc-openapi (Swagger) · Maven · Docker
 
-Frontend: React 18 (Vite) · TypeScript · Tailwind CSS · React Router · TanStack Query · Zustand · React Hook Form + Zod
-
 Features
 Auth & authorization — JWT access/refresh tokens, BCrypt password hashing, role-based access control (CUSTOMER / ADMIN) enforced via Spring Security + method-level @PreAuthorize
 Product catalog — dynamic search/filter/sort built with JPA Specifications (keyword, category, brand, price range, sort by price/rating/newest) instead of a fixed set of queries
@@ -23,26 +21,3 @@ React (Vite/TS) ──REST/JWT──▶ Spring Boot Controllers ─▶ Services 
                                                                      request-scoped tool classes)
 
 Backend follows a strict layered structure per domain module (entity → repository → service → controller, with DTOs/mappers at the boundary), documented further in the backend's own README.
-
-Getting started
-bash
-cp .env.example .env        # set JWT_SECRET and (optionally) OPENAI_API_KEY
-docker compose up --build
-Frontend: http://localhost:5173
-API + Swagger UI: http://localhost:8080/swagger-ui.html
-
-See ecommerce-backend/README section and ecommerce-frontend/.env.example for manual (non-Docker) setup, environment variables, and how to promote a seeded account to ADMIN.
-
-Testing
-bash
-cd ecommerce-backend && mvn test
-
-Covers the order status state machine (every legal/illegal transition), cart total/discount/tax calculation, and AuthService register/login edge cases via JUnit 5 + Mockito + AssertJ.
-
-API documentation
-
-Full interactive API reference via Swagger UI at /swagger-ui.html once the backend is running — covers auth, products, cart, wishlist, orders, admin, and the AI assistant endpoint.
-
-License
-
-MIT — built as a portfolio project.
